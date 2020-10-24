@@ -1,0 +1,25 @@
+{
+  "firstName": "Uchiha",
+  "middleName": "Madara",
+  "lastName": "Sasuke",
+  "mobileNo": "987652553",
+  "emailId": "uchiha_sasuke@konohagakure.com",
+  "flowType": "vendor",
+  "roles": [
+    {
+      "name": "Guru",
+      "description": "This is Guru Role"
+    }
+  ],
+  "addressList": [
+    {
+      "address1": "Konohagakure Street",
+      "address2": "1st Lane",
+      "city": "Konoha",
+      "state": "KN",
+      "country": "Japan",
+      "landmark": "far",
+      "mobile": "343171771"
+    }
+  ]
+}
