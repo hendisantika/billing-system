@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: Billing System
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/billing?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Jakarta&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+logging:
+  level:
+    org:
+      hibernate:
+        SQL=DEBUG:
+      springframework: info
+default:
+  role: ROLE_DEFAULT
+user:
+  firstname:
+    empty: First Name cannot be empty.
+
