@@ -1,0 +1,25 @@
+{
+  "firstName": "Uzumakki",
+  "middleName": "Hokage",
+  "lastName": "Naruto",
+  "mobileNo": "987652553",
+  "emailId": "uzumaki_naruto@konohagakure.com",
+  "flowType": "employee",
+  "roles": [
+    {
+      "name": "Guru",
+      "description": "This is Guru Role"
+    }
+  ],
+  "addressList": [
+    {
+      "address1": "Konohagakure Street",
+      "address2": "1st Lane",
+      "city": "Konoha",
+      "state": "KN",
+      "country": "Japan",
+      "landmark": "far",
+      "mobile": "343171771"
+    }
+  ]
+}
