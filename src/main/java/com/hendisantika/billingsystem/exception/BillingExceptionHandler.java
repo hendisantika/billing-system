@@ -1,9 +1,19 @@
 package com.hendisantika.billingsystem.exception;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,5 +28,17 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 @RestController
 public class BillingExceptionHandler extends ResponseEntityExceptionHandler {
-
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException arguments,
+                                                                  HttpHeaders headers,
+                                                                  HttpStatus status, WebRequest request) {
+        BindingResult bindingResult = arguments.getBindingResult();
+        List<String> validationMessages = new ArrayList<>();
+        List<ObjectError> objectErrors = bindingResult.getAllErrors();
+        for (ObjectError objectError : objectErrors) {
+            String defaultMessage = objectError.getDefaultMessage();
+            validationMessages.add(defaultMessage);
+        }
+        return new ResponseEntity<>(validationMessages, HttpStatus.BAD_REQUEST);
+    }
 }
