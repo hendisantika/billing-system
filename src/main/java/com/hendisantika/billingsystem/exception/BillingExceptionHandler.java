@@ -83,4 +83,10 @@ public class BillingExceptionHandler extends ResponseEntityExceptionHandler {
 
         return new ResponseEntity<>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(InvalidInputException.class)
+    public final ResponseEntity<Object> invalidInputException(InvalidInputException ex, WebRequest request) throws Exception {
+        ErrorMessage errorMessage = new ErrorMessage(ex.getMessage(), Utils.currentDateTime());
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
 }
