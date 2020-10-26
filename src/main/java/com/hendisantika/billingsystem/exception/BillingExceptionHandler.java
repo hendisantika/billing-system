@@ -102,6 +102,12 @@ public class BillingExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorMessage errorMessage = new ErrorMessage("The generated code already exist", Utils.currentDateTime());
         System.out.println("Error message " + errorMessage.getErrorMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(DuplicateKeyFoundException.class)
+    public final ResponseEntity<Object> duplicateKey(DuplicateKeyFoundException ex, WebRequest request) throws Exception {
+        ErrorMessage errorMessage = new ErrorMessage(ex.getMessage(), Utils.currentDateTime());
+        return new ResponseEntity<>(errorMessage, HttpStatus.CONFLICT);
 
     }
 }
