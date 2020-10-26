@@ -89,4 +89,10 @@ public class BillingExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage(), Utils.currentDateTime());
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<Object> resourceNotFound(ResourceNotFoundException ex, WebRequest request) throws Exception {
+        ErrorMessage errorMessage = new ErrorMessage(ex.getMessage(), Utils.currentDateTime());
+        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+    }
 }
