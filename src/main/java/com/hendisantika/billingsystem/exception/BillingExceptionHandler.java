@@ -1,5 +1,7 @@
 package com.hendisantika.billingsystem.exception;
 
+import com.hendisantika.billingsystem.common.Utils;
+import com.hendisantika.billingsystem.messages.ErrorMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -70,5 +73,14 @@ public class BillingExceptionHandler extends ResponseEntityExceptionHandler {
             validationMessages.add(fieldError.getDefaultMessage());
         }
         return validationMessages;
+    }
+
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<Object> handleCustomException(Exception ex, WebRequest request) throws Exception {
+        ErrorMessage errorMessage = new ErrorMessage(ex.getMessage(), Utils.currentDateTime());
+        log.info("Clsss name " + ex.getClass().getName());
+        log.info("type name " + ex.getClass().getTypeName());
+
+        return new ResponseEntity<>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
