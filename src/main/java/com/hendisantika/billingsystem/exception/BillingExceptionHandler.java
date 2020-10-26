@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,7 +101,7 @@ public class BillingExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public final ResponseEntity<Object> dataIntegrity(DataIntegrityViolationException ex, WebRequest request) throws Exception {
         ErrorMessage errorMessage = new ErrorMessage("The generated code already exist", Utils.currentDateTime());
-        System.out.println("Error message " + errorMessage.getErrorMessage());
+        log.info("Error message " + errorMessage.getErrorMessage());
         return new ResponseEntity<>(errorMessage, HttpStatus.CONFLICT);
     }
 
@@ -108,6 +109,29 @@ public class BillingExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<Object> duplicateKey(DuplicateKeyFoundException ex, WebRequest request) throws Exception {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage(), Utils.currentDateTime());
         return new ResponseEntity<>(errorMessage, HttpStatus.CONFLICT);
+    }
 
+    @ExceptionHandler(ValidationException.class)
+    public final ResponseEntity<Object> validationException(ValidationException ex, WebRequest request) throws Exception {
+        BindingResult bindingResult = ex.getBindingResult();
+        List<String> validationMessages = new ArrayList<>();
+        List<ObjectError> objectErrors = bindingResult.getAllErrors();
+        bindingResult.getFieldErrors();
+        List<FieldError> fr = bindingResult.getFieldErrors();
+        for (FieldError f : fr) {
+            log.info("Field: ", f.getField());
+            log.info("Value: ", f.getRejectedValue());
+        }
+        for (ObjectError objectError : objectErrors) {
+            objectError.getObjectName();
+            String defaultMessage = objectError.getDefaultMessage();
+            validationMessages.add(defaultMessage);
+        }
+        return new ResponseEntity<>(validationMessages, HttpStatus.BAD_REQUEST);
+
+    }
+
+    private LocalDateTime getCurrentDateTime() {
+        return LocalDateTime.now();
     }
 }
