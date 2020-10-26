@@ -3,6 +3,7 @@ package com.hendisantika.billingsystem.exception;
 import com.hendisantika.billingsystem.common.Utils;
 import com.hendisantika.billingsystem.messages.ErrorMessage;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -94,5 +95,13 @@ public class BillingExceptionHandler extends ResponseEntityExceptionHandler {
     public final ResponseEntity<Object> resourceNotFound(ResourceNotFoundException ex, WebRequest request) throws Exception {
         ErrorMessage errorMessage = new ErrorMessage(ex.getMessage(), Utils.currentDateTime());
         return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public final ResponseEntity<Object> dataIntegrity(DataIntegrityViolationException ex, WebRequest request) throws Exception {
+        ErrorMessage errorMessage = new ErrorMessage("The generated code already exist", Utils.currentDateTime());
+        System.out.println("Error message " + errorMessage.getErrorMessage());
+        return new ResponseEntity<>(errorMessage, HttpStatus.CONFLICT);
+
     }
 }
