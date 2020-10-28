@@ -49,4 +49,12 @@ public class UserPublicController {
         ResponseMessage responseMessage = registrationService.doRegistration(requestBody);
         return new ResponseEntity<ResponseMessage<?>>(responseMessage, HttpStatus.CREATED);
     }
+
+    @PostMapping("/vendors")
+    public ResponseEntity<ResponseMessage<?>> updateVendor(@Valid @RequestBody UserDTO requestBody) throws Exception {
+        requestBody.setType(UserType.VENDOR.name());
+        ResponseMessage responseMessage = registrationService.doRegistration(requestBody);
+        return new ResponseEntity<ResponseMessage<?>>(responseMessage, HttpStatus.CREATED);
+    }
+
 }
