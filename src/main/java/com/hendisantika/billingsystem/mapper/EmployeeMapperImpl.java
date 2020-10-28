@@ -179,4 +179,18 @@ public class EmployeeMapperImpl implements EmployeeMapper {
         return list1;
     }
 
+    protected Role roleDtoToRole(RoleDTO roleDto) {
+        if (roleDto == null) {
+            return null;
+        }
+
+        Role role = new Role();
+
+        role.setId(roleDto.getId());
+        role.setFlowType(roleDto.getType());
+        role.setName(roleDto.getName());
+        role.setDescription(roleDto.getDescription());
+
+        return role;
+    }
 }
