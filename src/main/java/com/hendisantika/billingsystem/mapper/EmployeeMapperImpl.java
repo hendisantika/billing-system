@@ -36,4 +36,23 @@ public class EmployeeMapperImpl implements EmployeeMapper {
 
         return employeeDto;
     }
+
+    @Override
+    public Employee dToToEmployee(EmployeeDTO employeeDto) {
+        if (employeeDto == null) {
+            return null;
+        }
+
+        Employee employee = new Employee();
+
+        employee.setId(employeeDto.getId());
+        employee.setFlowType(employeeDto.getType());
+        employee.setFullName(employeeDto.getFullName());
+        employee.setEmployeeCode(employeeDto.getEmployeeCode());
+        employee.setUser(userDtoToUser(employeeDto.getUser()));
+
+//        afterMapping( employee, employeeDto );
+
+        return employee;
+    }
 }
