@@ -166,4 +166,17 @@ public class EmployeeMapperImpl implements EmployeeMapper {
         return address;
     }
 
+    protected List<Address> addressDtoListToAddressList(List<AddressDTO> list) {
+        if (list == null) {
+            return null;
+        }
+
+        List<Address> list1 = new ArrayList<Address>(list.size());
+        for (AddressDTO addressDto : list) {
+            list1.add(addressDtoToAddress(addressDto));
+        }
+
+        return list1;
+    }
+
 }
