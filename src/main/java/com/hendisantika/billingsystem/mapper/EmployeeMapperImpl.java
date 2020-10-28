@@ -2,8 +2,10 @@ package com.hendisantika.billingsystem.mapper;
 
 import com.hendisantika.billingsystem.dto.AddressDTO;
 import com.hendisantika.billingsystem.dto.EmployeeDTO;
+import com.hendisantika.billingsystem.dto.RoleDTO;
 import com.hendisantika.billingsystem.entity.Address;
 import com.hendisantika.billingsystem.entity.Employee;
+import com.hendisantika.billingsystem.entity.Role;
 
 import javax.annotation.processing.Generated;
 import java.util.ArrayList;
@@ -91,5 +93,20 @@ public class EmployeeMapperImpl implements EmployeeMapper {
         }
 
         return list1;
+    }
+
+    protected RoleDTO roleToRoleDto(Role role) {
+        if (role == null) {
+            return null;
+        }
+
+        RoleDTO roleDto = new RoleDTO();
+
+        roleDto.setId(role.getId());
+        roleDto.setType(role.getFlowType());
+        roleDto.setName(role.getName());
+        roleDto.setDescription(role.getDescription());
+
+        return roleDto;
     }
 }
