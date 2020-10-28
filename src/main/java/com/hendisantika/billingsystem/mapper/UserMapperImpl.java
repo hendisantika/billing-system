@@ -138,4 +138,17 @@ public class UserMapperImpl implements UserMapper {
 
         return addressDto;
     }
+
+    protected List<AddressDTO> addressListToAddressDtoList(List<Address> list) {
+        if (list == null) {
+            return null;
+        }
+
+        List<AddressDTO> list1 = new ArrayList<AddressDTO>(list.size());
+        for (Address address : list) {
+            list1.add(addressToAddressDto(address));
+        }
+
+        return list1;
+    }
 }
