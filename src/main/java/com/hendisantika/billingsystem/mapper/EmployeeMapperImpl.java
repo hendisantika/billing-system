@@ -145,4 +145,25 @@ public class EmployeeMapperImpl implements EmployeeMapper {
 
         return userDto;
     }
+
+    protected Address addressDtoToAddress(AddressDTO addressDto) {
+        if (addressDto == null) {
+            return null;
+        }
+
+        Address address = new Address();
+
+        address.setId(addressDto.getId());
+        address.setFlowType(addressDto.getType());
+        address.setAddress1(addressDto.getAddress1());
+        address.setAddress2(addressDto.getAddress2());
+        address.setCity(addressDto.getCity());
+        address.setState(addressDto.getState());
+        address.setCountry(addressDto.getCountry());
+        address.setLandmark(addressDto.getLandmark());
+        address.setMobile(addressDto.getMobile());
+
+        return address;
+    }
+
 }
