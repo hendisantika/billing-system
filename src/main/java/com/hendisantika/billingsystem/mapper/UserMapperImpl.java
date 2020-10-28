@@ -6,6 +6,8 @@ import com.hendisantika.billingsystem.entity.Address;
 import com.hendisantika.billingsystem.entity.User;
 
 import javax.annotation.processing.Generated;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -76,5 +78,18 @@ public class UserMapperImpl implements UserMapper {
         address.setMobile(addressDto.getMobile());
 
         return address;
+    }
+
+    protected List<Address> addressDtoListToAddressList(List<AddressDTO> list) {
+        if (list == null) {
+            return null;
+        }
+
+        List<Address> list1 = new ArrayList<Address>(list.size());
+        for (AddressDTO addressDto : list) {
+            list1.add(addressDtoToAddress(addressDto));
+        }
+
+        return list1;
     }
 }
