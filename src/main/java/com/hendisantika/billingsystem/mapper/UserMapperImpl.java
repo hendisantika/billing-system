@@ -1,5 +1,8 @@
 package com.hendisantika.billingsystem.mapper;
 
+import com.hendisantika.billingsystem.dto.UserDTO;
+import com.hendisantika.billingsystem.entity.User;
+
 import javax.annotation.processing.Generated;
 
 /**
@@ -17,4 +20,22 @@ import javax.annotation.processing.Generated;
         comments = "version: 1.4.1.Final, compiler: javac, environment: Java 1.8.0_261 (Oracle Corporation)"
 )
 public class UserMapperImpl implements UserMapper {
+    @Override
+    public User userDTOtoUser(UserDTO userDto) {
+        if (userDto == null) {
+            return null;
+        }
+
+        User user = new User();
+
+        user.setEmailId(userDto.getEmailId());
+        user.setFirstName(userDto.getFirstName());
+        user.setMiddleName(userDto.getMiddleName());
+        user.setLastName(userDto.getLastName());
+        user.setMobileNo(userDto.getMobileNo());
+        user.setAddressList(addressDtoListToAddressList(userDto.getAddressList()));
+        user.setRoles(roleDtoListToRoleList(userDto.getRoles()));
+
+        return user;
+    }
 }
