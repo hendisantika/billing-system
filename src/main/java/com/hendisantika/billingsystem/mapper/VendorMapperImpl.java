@@ -1,5 +1,8 @@
 package com.hendisantika.billingsystem.mapper;
 
+import com.hendisantika.billingsystem.dto.VendorDTO;
+import com.hendisantika.billingsystem.entity.Vendor;
+
 import javax.annotation.processing.Generated;
 
 /**
@@ -17,4 +20,20 @@ import javax.annotation.processing.Generated;
         comments = "version: 1.4.1.Final, compiler: javac, environment: Java 1.8.0_261 (Oracle Corporation)"
 )
 public class VendorMapperImpl implements VendorMapper {
+    @Override
+    public Vendor vendorDTOtoUser(VendorDTO vendorDTO) {
+        if (vendorDTO == null) {
+            return null;
+        }
+
+        Vendor vendor = new Vendor();
+
+        vendor.setId(vendorDTO.getId());
+        vendor.setFlowType(vendorDTO.getType());
+        vendor.setFullName(vendorDTO.getFullName());
+        vendor.setVendorCode(vendorDTO.getVendorCode());
+        vendor.setUser(vendorDTO.getUser());
+
+        return vendor;
+    }
 }
