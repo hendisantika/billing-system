@@ -1,5 +1,8 @@
 package com.hendisantika.billingsystem.mapper;
 
+import com.hendisantika.billingsystem.dto.EmployeeDTO;
+import com.hendisantika.billingsystem.entity.Employee;
+
 import javax.annotation.processing.Generated;
 
 /**
@@ -17,4 +20,20 @@ import javax.annotation.processing.Generated;
         comments = "version: 1.4.1.Final, compiler: javac, environment: Java 1.8.0_261 (Oracle Corporation)"
 )
 public class EmployeeMapperImpl implements EmployeeMapper {
+    @Override
+    public EmployeeDTO employeeToDTO(Employee employee) {
+        if (employee == null) {
+            return null;
+        }
+
+        EmployeeDTO employeeDto = new EmployeeDTO();
+
+        employeeDto.setId(employee.getId());
+        employeeDto.setType(employee.getFlowType());
+        employeeDto.setFullName(employee.getFullName());
+        employeeDto.setEmployeeCode(employee.getEmployeeCode());
+        employeeDto.setUser(userToUserDto(employee.getUser()));
+
+        return employeeDto;
+    }
 }
