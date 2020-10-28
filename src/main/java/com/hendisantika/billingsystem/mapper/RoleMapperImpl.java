@@ -36,4 +36,20 @@ public class RoleMapperImpl implements RoleMapper {
         return role;
     }
 
+    @Override
+    public RoleDTO roleToRoleDTO(Role role) {
+        if (role == null) {
+            return null;
+        }
+
+        RoleDTO roleDTO = new RoleDTO();
+
+        roleDTO.setId(role.getId());
+        roleDTO.setType(role.getFlowType());
+        roleDTO.setName(role.getName());
+        roleDTO.setDescription(role.getDescription());
+
+        return roleDTO;
+    }
+
 }
