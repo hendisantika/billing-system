@@ -107,4 +107,17 @@ public class UserMapperImpl implements UserMapper {
 
         return role;
     }
+
+    protected List<Role> roleDtoListToRoleList(List<RoleDTO> list) {
+        if (list == null) {
+            return null;
+        }
+
+        List<Role> list1 = new ArrayList<Role>(list.size());
+        for (RoleDTO roleDto : list) {
+            list1.add(roleDtoToRole(roleDto));
+        }
+
+        return list1;
+    }
 }
