@@ -41,4 +41,12 @@ public class UserPublicController {
         ResponseMessage responseMessage = registrationService.doRegistration(requestBody);
         return new ResponseEntity<ResponseMessage<?>>(responseMessage, HttpStatus.CREATED);
     }
+
+    @PostMapping("/customers") // http://localhost:9090/api/public/users/customers
+    public ResponseEntity<ResponseMessage<?>> updateCustomer(@RequestBody UserDTO requestBody) throws Exception {
+        requestBody.setType(UserType.CUSTOMER.name());
+        customerValidator.validate(requestBody);
+        ResponseMessage responseMessage = registrationService.doRegistration(requestBody);
+        return new ResponseEntity<ResponseMessage<?>>(responseMessage, HttpStatus.CREATED);
+    }
 }
