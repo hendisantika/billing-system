@@ -120,4 +120,22 @@ public class UserMapperImpl implements UserMapper {
 
         return list1;
     }
+
+    protected AddressDTO addressToAddressDto(Address address) {
+        if (address == null) {
+            return null;
+        }
+
+        AddressDTO addressDto = new AddressDTO();
+
+        addressDto.setAddress1(address.getAddress1());
+        addressDto.setAddress2(address.getAddress2());
+        addressDto.setCity(address.getCity());
+        addressDto.setState(address.getState());
+        addressDto.setCountry(address.getCountry());
+        addressDto.setLandmark(address.getLandmark());
+        addressDto.setMobile(address.getMobile());
+
+        return addressDto;
+    }
 }
