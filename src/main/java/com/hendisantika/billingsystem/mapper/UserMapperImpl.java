@@ -38,4 +38,23 @@ public class UserMapperImpl implements UserMapper {
 
         return user;
     }
+
+    @Override
+    public UserDTO userToUserDTO(User user) {
+        if (user == null) {
+            return null;
+        }
+
+        UserDTO userDto = new UserDTO();
+
+        userDto.setEmailId(user.getEmailId());
+        userDto.setFirstName(user.getFirstName());
+        userDto.setMiddleName(user.getMiddleName());
+        userDto.setLastName(user.getLastName());
+        userDto.setMobileNo(user.getMobileNo());
+        userDto.setAddressList(addressListToAddressDtoList(user.getAddressList()));
+        userDto.setRoles(roleListToRoleDtoList(user.getRoles()));
+
+        return userDto;
+    }
 }
