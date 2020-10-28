@@ -151,4 +151,17 @@ public class UserMapperImpl implements UserMapper {
 
         return list1;
     }
+
+    protected RoleDTO roleToRoleDto(Role role) {
+        if (role == null) {
+            return null;
+        }
+
+        RoleDTO roleDto = new RoleDTO();
+
+        roleDto.setName(role.getName());
+        roleDto.setDescription(role.getDescription());
+
+        return roleDto;
+    }
 }
