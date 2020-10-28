@@ -1,6 +1,8 @@
 package com.hendisantika.billingsystem.mapper;
 
+import com.hendisantika.billingsystem.dto.AddressDTO;
 import com.hendisantika.billingsystem.dto.EmployeeDTO;
+import com.hendisantika.billingsystem.entity.Address;
 import com.hendisantika.billingsystem.entity.Employee;
 
 import javax.annotation.processing.Generated;
@@ -54,5 +56,25 @@ public class EmployeeMapperImpl implements EmployeeMapper {
 //        afterMapping( employee, employeeDto );
 
         return employee;
+    }
+
+    protected AddressDTO addressToAddressDto(Address address) {
+        if (address == null) {
+            return null;
+        }
+
+        AddressDTO addressDto = new AddressDTO();
+
+        addressDto.setId(address.getId());
+        addressDto.setType(address.getFlowType());
+        addressDto.setAddress1(address.getAddress1());
+        addressDto.setAddress2(address.getAddress2());
+        addressDto.setCity(address.getCity());
+        addressDto.setState(address.getState());
+        addressDto.setCountry(address.getCountry());
+        addressDto.setLandmark(address.getLandmark());
+        addressDto.setMobile(address.getMobile());
+
+        return addressDto;
     }
 }
