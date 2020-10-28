@@ -6,6 +6,8 @@ import com.hendisantika.billingsystem.entity.Address;
 import com.hendisantika.billingsystem.entity.Employee;
 
 import javax.annotation.processing.Generated;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -76,5 +78,18 @@ public class EmployeeMapperImpl implements EmployeeMapper {
         addressDto.setMobile(address.getMobile());
 
         return addressDto;
+    }
+
+    protected List<AddressDTO> addressListToAddressDtoList(List<Address> list) {
+        if (list == null) {
+            return null;
+        }
+
+        List<AddressDTO> list1 = new ArrayList<AddressDTO>(list.size());
+        for (Address address : list) {
+            list1.add(addressToAddressDto(address));
+        }
+
+        return list1;
     }
 }
