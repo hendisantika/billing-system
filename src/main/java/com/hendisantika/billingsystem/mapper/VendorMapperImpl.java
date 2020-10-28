@@ -36,4 +36,21 @@ public class VendorMapperImpl implements VendorMapper {
 
         return vendor;
     }
+
+    @Override
+    public VendorDTO vendorToVendorDTO(Vendor vendor) {
+        if (vendor == null) {
+            return null;
+        }
+
+        VendorDTO vendorDTO = new VendorDTO();
+
+        vendorDTO.setId(vendor.getId());
+        vendorDTO.setType(vendor.getFlowType());
+        vendorDTO.setFullName(vendor.getFullName());
+        vendorDTO.setVendorCode(vendor.getVendorCode());
+        vendorDTO.setUser(vendor.getUser());
+
+        return vendorDTO;
+    }
 }
