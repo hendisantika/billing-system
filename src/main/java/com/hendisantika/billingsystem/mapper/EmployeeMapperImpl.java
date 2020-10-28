@@ -206,4 +206,24 @@ public class EmployeeMapperImpl implements EmployeeMapper {
 
         return list1;
     }
+
+    protected User userDtoToUser(UserDTO userDto) {
+        if (userDto == null) {
+            return null;
+        }
+
+        User user = new User();
+
+        user.setId(userDto.getId());
+        user.setFlowType(userDto.getType());
+        user.setEmailId(userDto.getEmailId());
+        user.setFirstName(userDto.getFirstName());
+        user.setMiddleName(userDto.getMiddleName());
+        user.setLastName(userDto.getLastName());
+        user.setMobileNo(userDto.getMobileNo());
+        user.setAddressList(addressDtoListToAddressList(userDto.getAddressList()));
+        user.setRoles(roleDtoListToRoleList(userDto.getRoles()));
+
+        return user;
+    }
 }
