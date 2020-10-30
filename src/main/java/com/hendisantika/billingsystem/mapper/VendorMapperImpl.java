@@ -3,7 +3,8 @@ package com.hendisantika.billingsystem.mapper;
 import com.hendisantika.billingsystem.dto.VendorDTO;
 import com.hendisantika.billingsystem.entity.Vendor;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
+
 
 /**
  * Created by IntelliJ IDEA.

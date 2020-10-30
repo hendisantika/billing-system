@@ -3,7 +3,7 @@ package com.hendisantika.billingsystem.mapper;
 import com.hendisantika.billingsystem.dto.RoleDTO;
 import com.hendisantika.billingsystem.entity.Role;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 /**
  * Created by IntelliJ IDEA.

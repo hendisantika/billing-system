@@ -4,7 +4,7 @@ import com.hendisantika.billingsystem.dto.CustomerDTO;
 import com.hendisantika.billingsystem.entity.Customer;
 import com.hendisantika.billingsystem.entity.Employee;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 
 /**
  * Created by IntelliJ IDEA.

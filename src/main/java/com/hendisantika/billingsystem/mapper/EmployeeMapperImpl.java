@@ -9,7 +9,7 @@ import com.hendisantika.billingsystem.entity.Employee;
 import com.hendisantika.billingsystem.entity.Role;
 import com.hendisantika.billingsystem.entity.User;
 
-import javax.annotation.processing.Generated;
+import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.List;
 
